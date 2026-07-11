@@ -7,10 +7,10 @@
 </head>
 <body>
     <header>
-        <h1>Welcome to My E-Commerce Store</h1>
+        <h1 id="welcome-text">Welcome to My E-Commerce Store</h1>
         <nav>
             <ul>
-                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html" class="active">Home</a></li>
                 <li><a href="product.html">Products</a></li>
                 <li><a href="cart.html">Cart</a></li>
                 <li><a href="checkout.html">Checkout</a></li>
@@ -23,12 +23,55 @@
 
     <main>
         <h2>About Us</h2>
-        <p>We bring you the best products at affordable prices. Shop with us and enjoy a seamless online shopping experience.</p>
+        <p id="about-text">
+            Meticulously crafted from the finest materials to ensure durability and style 
+            We strive to bring you the best products at affordable prices. 
+            Fast,reliable delivery straight to you doorstep, hassle-free
+            A dedicated support team ready to assist you every step of the way.
+        </p>
         <p>Click on "Products" to explore our catalog.</p>
     </main>
 
     <footer>
-        <p>&copy; 2026 My E-Commerce Store</p>
+        © <span id="year"></span> My E-Commerce Store
     </footer>
+
+    <!-- JavaScript directly at the bottom -->
+    <script>
+        // Highlight active nav link
+        const navLinks = document.querySelectorAll('nav ul li a');
+        navLinks.forEach(link => {
+          link.addEventListener('click', () => {
+            navLinks.forEach(l => l.classList.remove('active'));
+            link.classList.add('active');
+          });
+        });
+
+        // Fade-in effect for welcome text
+        const welcomeText = document.getElementById('welcome-text');
+        if (welcomeText) {
+          welcomeText.style.opacity = 0;
+          welcomeText.style.transition = 'opacity 1.5s ease';
+          window.addEventListener('load', () => {
+            welcomeText.style.opacity = 1;
+          });
+        }
+
+        // Fade-in effect for About Us text
+        const aboutText = document.getElementById('about-text');
+        if (aboutText) {
+          aboutText.style.opacity = 0;
+          aboutText.style.transition = 'opacity 1.5s ease';
+          window.addEventListener('load', () => {
+            aboutText.style.opacity = 1;
+          });
+        }
+
+        // Auto-update footer year
+        const yearSpan = document.getElementById('year');
+        if (yearSpan) {
+          yearSpan.textContent = new Date().getFullYear();
+        }
+    </script>
 </body>
 </html>

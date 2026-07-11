@@ -1,39 +1,59 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
   <title>Orders</title>
+  <!-- Link to your CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <nav>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="product.html">Products</a></li>
-      <li><a href="cart.html">Cart</a></li>
-      <li><a href="checkout.html">Checkout</a></li>
-      <li><a href="orders.html">Orders</a></li>
-      <li><a href="about.html">About Us</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-  </nav>
+  <header>
+    <h1>Orders</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="product.html">Products</a></li>
+        <li><a href="cart.html">Cart</a></li>
+        <li><a href="checkout.html">Checkout</a></li>
+        <li><a href="orders.html" class="active">Orders</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
 
-  <h1>Your Orders</h1>
-  <table border="1">
-    <tr>
-      <th>Order ID</th>
-      <th>Product</th>
-      <th>Status</th>
-    </tr>
-    <tr>
-      <td>001</td>
-      <td>Sample Product</td>
-      <td>Shipped</td>
-    </tr>
-    <tr>
-      <td>002</td>
-      <td>Another Product</td>
-      <td>Processing</td>
-    </tr>
-  </table>
+  <main>
+    <h2>Your Orders</h2>
+    <table class="orders-table">
+      <tr>
+        <th>Order ID</th>
+        <th>Product</th>
+        <th>Status</th>
+      </tr>
+      <tr>
+        <td>001</td>
+        <td>Product 1</td>
+        <td><span class="status shipped">Shipped</span></td>
+      </tr>
+      <tr>
+        <td>002</td>
+        <td>Product 2</td>
+        <td><span class="status processing">Processing</span></td>
+      </tr>
+      <tr>
+        <td>003</td>
+        <td>Product 3</td>
+        <td><span class="status cancelled">Cancelled</span></td>
+      </tr>
+    </table>
+  </main>
+
+  <footer>
+    © 2026 My E-Commerce Store
+  </footer>
+
+  <!-- Link to your JavaScript (must be in same folder) -->
+  <script src="script.js"></script>
 </body>
 </html>
+

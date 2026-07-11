@@ -13,7 +13,7 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="product.html">Products</a></li>
                 <li><a href="cart.html">Cart</a></li>
-                <li><a href="checkout.html">Checkout</a></li>
+                <li><a href="checkout.html" class="active">Checkout</a></li>
                 <li><a href="orders.html">Orders</a></li>
                 <li><a href="about.html">About Us</a></li>
                 <li><a href="contact.html">Contact</a></li>
@@ -23,13 +23,14 @@
 
     <main>
         <h2>Enter Your Details</h2>
-        <form>
+        <form id="checkout-form">
             <label>Name:</label><br>
-            <input type="text" name="name"><br><br>
+            <input type="text" name="name" id="name"><br><br>
             <label>Address:</label><br>
-            <textarea name="address"></textarea><br><br>
+            <textarea name="address" id="address"></textarea><br><br>
             <label>Payment Method:</label><br>
-            <select>
+            <select id="payment">
+                <option value="">Select a method</option>
                 <option>Credit Card</option>
                 <option>Debit Card</option>
                 <option>UPI</option>
@@ -40,7 +41,51 @@
     </main>
 
     <footer>
-        <p>&copy; 2026 My E-Commerce Store</p>
+        © <span id="year"></span> My E-Commerce Store
     </footer>
+
+    <!-- JavaScript directly at the bottom -->
+    <script>
+        // Highlight active nav link
+        const navLinks = document.querySelectorAll('nav ul li a');
+        navLinks.forEach(link => {
+          link.addEventListener('click', () => {
+            navLinks.forEach(l => l.classList.remove('active'));
+            link.classList.add('active');
+          });
+        });
+
+        // Fade-in effect for form
+        const form = document.getElementById('checkout-form');
+        if (form) {
+          form.style.opacity = 0;
+          form.style.transition = 'opacity 1.5s ease';
+          window.addEventListener('load', () => {
+            form.style.opacity = 1;
+          });
+        }
+
+        // Simple form validation
+        form.addEventListener('submit', function(e) {
+          e.preventDefault();
+          const name = document.getElementById('name').value.trim();
+          const address = document.getElementById('address').value.trim();
+          const payment = document.getElementById('payment').value;
+
+          if (!name || !address || !payment) {
+            alert("⚠️ Please fill in all fields before placing your order.");
+            return;
+          }
+
+          alert("✅ Order placed successfully! Thank you for shopping with us.");
+          form.reset();
+        });
+
+        // Auto-update footer year
+        const yearSpan = document.getElementById('year');
+        if (yearSpan) {
+          yearSpan.textContent = new Date().getFullYear();
+        }
+    </script>
 </body>
 </html>

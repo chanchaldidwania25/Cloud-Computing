@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Contact Us</title>
+  <meta charset="UTF-8">
+  <title>Contact Us - My E-Commerce Store</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -13,16 +14,75 @@
       <li><a href="checkout.html">Checkout</a></li>
       <li><a href="orders.html">Orders</a></li>
       <li><a href="about.html">About Us</a></li>
-      <li><a href="contact.html">Contact</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
     </ul>
   </nav>
 
   <h1>Contact Us</h1>
-  <form>
-    <label>Name:</label><input type="text"><br><br>
-    <label>Email:</label><input type="email"><br><br>
-    <label>Message:</label><textarea></textarea><br><br>
+  <form id="contact-form">
+    <label>Name:</label><br>
+    <input type="text" id="name"><br><br>
+    <label>Email:</label><br>
+    <input type="email" id="email"><br><br>
+    <label>Message:</label><br>
+    <textarea id="message"></textarea><br><br>
     <button type="submit">Send</button>
   </form>
+
+  <footer>
+    © <span id="year"></span> My E-Commerce Store
+  </footer>
+
+  <!-- JavaScript directly at the bottom -->
+  <script>
+    // Highlight active nav link
+    const navLinks = document.querySelectorAll('nav ul li a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+      });
+    });
+
+    // Fade-in effect for form
+    const form = document.getElementById('contact-form');
+    if (form) {
+      form.style.opacity = 0;
+      form.style.transition = 'opacity 1.5s ease';
+      window.addEventListener('load', () => {
+        form.style.opacity = 1;
+      });
+    }
+
+    // Form validation
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+
+      if (!name || !email || !message) {
+        alert("⚠️ Please fill in all fields before sending.");
+        return;
+      }
+
+      // Simple email check
+      const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+      if (!email.match(emailPattern)) {
+        alert("⚠️ Please enter a valid email address.");
+        return;
+      }
+
+      alert("✅ Thank you for contacting us! We'll reply soon.");
+      form.reset();
+    });
+
+    // Auto-update footer year
+    const yearSpan = document.getElementById('year');
+    if (yearSpan) {
+      yearSpan.textContent = new Date().getFullYear();
+    }
+  </script>
 </body>
 </html>
+
